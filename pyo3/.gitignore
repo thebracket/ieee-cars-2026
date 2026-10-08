@@ -1,0 +1,20 @@
+# Rust build artifacts
+target/
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python bytecode and tool caches
+__pycache__/
+*.py[cod]
+
+# Python packaging output
+dist/
+*.egg-info/
+
+# Compiled extension modules
+*.so
+*.dylib
+*.pyd
+*.dll

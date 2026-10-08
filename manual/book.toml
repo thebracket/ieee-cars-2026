@@ -1,0 +1,5 @@
+[book]
+authors = ["Herbert Wolverson"]
+language = "en"
+src = "src"
+title = "IEEE-CARS 2026 — Foundational Rust for Secure Systems & Accelerating Python with Rust"

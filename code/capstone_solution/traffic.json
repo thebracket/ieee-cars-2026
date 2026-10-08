@@ -1,0 +1,14 @@
+[
+  {"source_ip": "10.0.0.14",    "destination_port": 443,  "bytes": 8000},
+  {"source_ip": "10.0.0.14",    "destination_port": 443,  "bytes": 12000},
+  {"source_ip": "10.0.0.14",    "destination_port": 80,   "bytes": 3000},
+  {"source_ip": "10.0.0.31",    "destination_port": 443,  "bytes": 500},
+  {"source_ip": "10.0.0.31",    "destination_port": 8080, "bytes": 250},
+  {"source_ip": "10.0.0.31",    "destination_port": 22,   "bytes": 100},
+  {"source_ip": "192.168.4.7",  "destination_port": 22,   "bytes": 1500},
+  {"source_ip": "192.168.4.7",  "destination_port": 22,   "bytes": 2500},
+  {"source_ip": "192.168.4.7",  "destination_port": 443,  "bytes": 4000},
+  {"source_ip": "203.0.113.99", "destination_port": 443,  "bytes": 15000},
+  {"source_ip": "203.0.113.99", "destination_port": 80,   "bytes": 25000},
+  {"source_ip": "203.0.113.99", "destination_port": 8080, "bytes": 10000}
+]

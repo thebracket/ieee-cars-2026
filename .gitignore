@@ -1,0 +1,32 @@
+# --- Rust build artifacts (workspace + every crate) ---
+target/
+
+# --- mdBook output ---
+manual/book/
+
+# --- Python virtual environments ---
+.venv/
+venv/
+
+# --- Python bytecode and tool caches ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Python packaging output ---
+dist/
+*.egg-info/
+
+# --- Compiled extension modules (maturin develop artifacts) ---
+*.so
+*.dylib
+*.pyd
+*.dll
+
+# --- OS / editor junk ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

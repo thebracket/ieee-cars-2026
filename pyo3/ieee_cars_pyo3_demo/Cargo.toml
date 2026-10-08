@@ -1,0 +1,12 @@
+[package]
+name = "ieee_cars_pyo3_demo"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "ieee_cars_pyo3_demo"
+crate-type = ["cdylib"] # Build as a C dynamic library.
+
+[dependencies]
+pyo3 = "0.27.0"    # The Python bridge
+rayon = "1.11.0"   # Easy parallelism
