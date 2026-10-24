@@ -19,6 +19,12 @@ def py_word_frequencies(text):
 Everything here lives in `pyo3/ieee_cars_pyo3_demo/src/lib.rs`, and the
 benchmark that produced the numbers below is `wordstats.py`.
 
+> **Scope of the comparison:** The Python and Rust versions agree on the supplied
+> benchmark corpus, not necessarily every possible input. Python's `str.split()`
+> and Rust's `split_whitespace()` differ on some control characters: for example,
+> `"a\u001cb"` splits into two words in Python but one in Rust. For production use,
+> define the intended word-splitting rules and test both implementations against them.
+
 ## Step 1: `word_count`
 
 ```rust
