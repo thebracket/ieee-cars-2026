@@ -78,6 +78,6 @@ look harmless.
 C++ (and C) have the concept of *ownership*, but it isn't explicit. When you make a `unique_ptr`, you own it - and you *move* it to other owners. Rust makes this
 explicit. Everything is owned by a scope.
 
-This isn't just pedantry: *use-after-free* and *double-free* are two of the most
-exploited bug classes in secure systems. CVE databases are full of them. Rust's
-compiler refuses to build the program, so the bug class simply never ships.
+*Use-after-free* and *double-free* are two of the most exploited bug classes in
+secure systems. CVE databases are full of them. Rust's compiler refuses to build
+the program, so the bug class simply never ships.

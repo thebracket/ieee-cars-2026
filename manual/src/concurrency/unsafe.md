@@ -9,7 +9,7 @@ There is one. It's called `unsafe`---and it's much narrower than you'd expect.
 
 `unsafe` means the compiler could not verify that this code upholds the safety
 rules---a human now has to check it. The code may well be perfectly sound; the
-point is that the proof moved from the compiler to you.
+checking just moved from the compiler to you.
 
 ```rust
 fn main() {

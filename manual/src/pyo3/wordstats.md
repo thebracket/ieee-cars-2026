@@ -13,8 +13,8 @@ def py_word_frequencies(text):
 ```
 
 > Fair warning before any benchmarking: Python's `Counter` is *C code* under the
-> hood. It is genuinely fast. The point of this demo is not to humiliate it —
-> it's to see the Rust pipeline in action, and to meet the GIL.
+> hood. It is genuinely fast. This demo is about seeing the Rust pipeline in
+> action, and meeting the GIL.
 
 Everything here lives in `pyo3/ieee_cars_pyo3_demo/src/lib.rs`, and the
 benchmark that produced the numbers below is `wordstats.py`.

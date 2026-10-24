@@ -30,8 +30,8 @@ cargo run --bin custom_error -p ex03_errors
 > The project's `Cargo.toml` already lists `thiserror` — how dependencies get
 > there is exactly what the next section is about.
 
-Now callers can `match` on `ConfigError::NotFound` *by name*. That's the payoff:
-errors that are part of your API's type signature, not a comments-and-hope system.
+Now callers can `match` on `ConfigError::NotFound` *by name*: errors are part of
+your API's type signature instead of a comments-and-hope system.
 
 ## Safe Arithmetic
 

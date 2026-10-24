@@ -34,6 +34,8 @@ Mara Bos' book "Rust Atomics and Locks" ( https://marabos.nl/atomics/ ) is a gre
 
 ## Why isn't `counter` mutable?
 
-That's the secret behind the `mut` keyword. It really *does* mean "mutual exclusion" *more* than it means "mutable"! Rust supports a pattern called "interior mutability". You'll see this pattern again today---the Mutex page coming up uses exactly the same trick.
+The `mut` keyword is about mutual exclusion more than mutability. Rust supports
+a pattern called "interior mutability". You'll see this pattern again today---the
+Mutex page coming up uses exactly the same trick.
 
 For now: think of `mut` like a compile-time lock. If a type can provide that lock at run-time, it can opt out of the compile-time lock.

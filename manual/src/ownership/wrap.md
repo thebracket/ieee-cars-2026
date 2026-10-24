@@ -14,8 +14,9 @@ It didn't take me very long to realize that the pain was worth it, because I'd e
 * Changing a function signature without checking all the usages.
 
 Rust was born out of Mozilla employees hitting the same bugs over and over again, and
-not wanting to keep digging the same holes. For secure systems work, that's the whole
-pitch: entire bug classes are rejected at compile time, before they ever ship.
+not wanting to keep digging the same holes. For secure systems work, the benefit
+is concrete: entire bug classes are rejected at compile time, before they ever
+ship.
 
 Next up: *safe error handling* — `Option` (no more null) and `Result` (errors you
 can't ignore).

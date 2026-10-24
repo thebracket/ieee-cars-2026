@@ -133,9 +133,9 @@ Flows by destination port:
 
 Everything used here — `Deserialize`, `HashMap` and the `entry` API, iterator
 chains, `Option`/`Result`, `?`, `thiserror`, `sort` — appeared earlier today.
-That's not a coincidence: it's the toolkit for secure systems work. A log goes
-in, a typed analysis comes out, and malformed JSON is reported as a typed `Err`
-instead of an exception or a silent partial result.
+That's the toolkit for secure systems work: a log goes in, a typed analysis
+comes out, and malformed JSON is reported as a typed `Err` instead of an
+exception or a silent partial result.
 
 > Notice the story the report tells: `203.0.113.99` sent the most bytes while
 > making only three connections — and in the event-log lab earlier, that same

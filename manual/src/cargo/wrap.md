@@ -12,8 +12,8 @@ That's the natural boundary for Session 1. This morning you went from
   private-by-default visibility; a lockfile and audit tooling for the supply
   chain.
 
-You now have a Cargo project with dependencies. That's not a toy — that's the
-starting point for every real Rust codebase.
+You now have a Cargo project with dependencies: the starting point for every
+real Rust codebase.
 
 ## After Lunch
 

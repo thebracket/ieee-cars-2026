@@ -56,4 +56,4 @@ max=Some(4) min=Some(1) sum=10 count=4 fold=10
 Iterators are *zero-cost abstractions*: the compiler flattens these chains into
 the same machine code as a hand-written loop. And when we meet Rayon later this
 session, `.iter()` becomes `.par_iter()` and the *same chain* runs across every
-CPU core — that's the payoff for thinking in iterators.
+CPU core.

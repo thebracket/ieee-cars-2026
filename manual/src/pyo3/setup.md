@@ -114,7 +114,7 @@ python3
 ```
 
 A Rust function just ran inside Python, with automatic type conversion in both
-directions. That's the whole trick — everything else is detail.
+directions.
 
 > **The loop you're going to live in:** edit `src/lib.rs` → `maturin develop` →
 > `import` and try it in Python. Rust's compiler errors show up in your
