@@ -28,7 +28,9 @@ Add `divide` — again inside the module:
                 "Dividing by zero will ruin your day",
             ))
         } else {
-            Ok(a / b)
+            a.checked_div(b).ok_or_else(|| {
+                PyArithmeticError::new_err("The result doesn't fit in a 32-bit integer")
+            })
         }
     }
 ```
@@ -37,7 +39,14 @@ Add `divide` — again inside the module:
 > root isn't visible to `divide`, because `divide` belongs to the nested
 > `#[pymodule]` module. This one bites everyone once.
 
-Build, then try both paths in the REPL:
+> Why `checked_div` instead of `/`? `i32` has one quotient it can't
+> represent: `-2147483648 / -1` is `2147483648`, one past `i32::MAX`. Plain
+> `/` panics there, and a Rust panic becomes a PyO3 `PanicException`. That
+> inherits from `BaseException`, not `Exception`, so `except Exception` will
+> not catch it. `checked_div` returns `None`, which we turn into an ordinary
+> `ArithmeticError`.
+
+Build, then try the normal path and both failure paths in the REPL:
 
 ```bash
 maturin develop
@@ -51,6 +60,10 @@ maturin develop
 Traceback (most recent call last):
   ...
 ArithmeticError: Dividing by zero will ruin your day
+>>> ieee_cars_pyo3_demo.divide(-2147483648, -1)
+Traceback (most recent call last):
+  ...
+ArithmeticError: The result doesn't fit in a 32-bit integer
 ```
 
 The `ArithmeticError` appeared as a normal Python exception. It's catchable with

@@ -3,7 +3,11 @@ fn main() {
 
     let to_add: Vec<u32> = (0..5000).collect(); // Shorthand for building a vector [0,1,2 .. 4999]
     let mut thread_handles = Vec::new();
-    let chunks = to_add.chunks(N_THREADS);
+    // `chunks` takes the size of each chunk, not the number of chunks. Round up
+    // so we get at most `N_THREADS` chunks. `max(1)` keeps `chunks` happy if
+    // `to_add` is empty.
+    let chunk_size = to_add.len().div_ceil(N_THREADS).max(1);
+    let chunks = to_add.chunks(chunk_size);
 
     // Notice that each chunk is a *slice* - a reference - to part of the array.
     for chunk in chunks {

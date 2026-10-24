@@ -12,7 +12,7 @@ The toolkit is complete:
 * **Smart pointers** — `Box` (unique), `Rc` (shared, single-threaded), `Arc`
   (shared, thread-safe).
 
-You now have every ingredient for the capstone: ownership, errors, threads,
-locks, and the smart pointers that hold it all together.
+You now have every ingredient for the capstone: ownership, borrowing, errors,
+and the collections and iterators you've been using all day.
 
-Time to build something: **the file integrity checker**.
+Time to build something: **the traffic report**.

@@ -7,8 +7,9 @@ There is one. It's called `unsafe`---and it's much narrower than you'd expect.
 
 ## What `unsafe` Actually Means
 
-`unsafe` does **not** mean "this code is unsafe". It means: *the compiler could not
-verify that this code upholds the safety rules---a human needs to check it.*
+`unsafe` means the compiler could not verify that this code upholds the safety
+rules---a human now has to check it. The code may well be perfectly sound; the
+point is that the proof moved from the compiler to you.
 
 ```rust
 fn main() {
@@ -26,9 +27,10 @@ one is `unsafe`, because the compiler can no longer prove that the pointee is
 alive, aligned, and not aliased. Writing `unsafe` is you signing a statement that
 you checked.
 
-> Think of `unsafe` as a review annotation, not a power-up. `grep -r unsafe`
-> instantly lists every line of a Rust codebase where the compiler was asked to
-> step aside. Your C codebase is *entirely* that---you just can't grep for it.
+> Think of `unsafe` as a review annotation: it marks code for a human to check.
+> `grep -r unsafe` instantly lists every line of a Rust codebase where the
+> compiler was asked to step aside. Your C codebase is *entirely* that---you
+> just can't grep for it.
 
 ## Inside an `unsafe` Block, You Can...
 
@@ -53,19 +55,6 @@ In practice, `unsafe` code falls into four categories:
   checks unnecessary in release builds. Measure, *then* reach for it.
 * **OH NO**: `unsafe` to "fix" a design problem. Hey, watch this. Great for
   conference demos; a really horrible idea for production code.
-
-## The Escape Hatch Is Shrinking
-
-Here's the part C folks should appreciate. For years, the classic way to "turn
-Rust off" was `static mut`: a mutable global you could poke from anywhere inside
-an `unsafe` block, recreating any data race you liked.
-
-Recent editions have been closing even that. Referencing a mutable static now
-draws a `static_mut_refs` warning---headed for a hard error---and the sanctioned
-replacement is a raw pointer, so the unsafety lives visibly at the dereference.
-Every loophole gets treated as a bug to fix, not a feature to keep. `unsafe`
-isn't the floor falling out of the guarantees; it's a small, marked,
-actively-patrolled door in the wall.
 
 ## For Your Codebase
 

@@ -79,10 +79,13 @@ If you've used `std::thread`, you've probably also run into atomic types. An ato
 
 So how does Rust know that it *isn't* safe to share an integer---but it is safe to share an atomic? Rust has two traits that self-implement (and can be overridden in unsafe code): `Sync` and `Send`.
 
-* A `Sync` type can be modified - it has a *synchronization* primitive.
+* A `Sync` type can be safely used with a reference between threads - it has a *synchronization* primitive.
 * A `Send` type can be sent between threads - it isn't going to do bizarre things because it is being accessed from multiple places.
 
-A regular integer is neither. An Atomic integer is both.
+Send and Sync are automatically implemented by the compiler when they apply. The majority of types are `Send` (`Rc` explicitly opts out of being `Send` - it is a *single-threaded* reference counter). Most types are not `Sync` - but synchronization primitives (atomics, mutexes, etc.) provide `Sync` safety:
+* You can access an atomic or mutex across threads - while still allowing controlled mutation - safely because the synchronization primitive provides `Sync`.
+
+For example, a bare `i32` can be sent between threads, but only safely referenced across threads if it is constant. An `AtomicI32` guarantees thread-safe mutation, so it can be safely read (via the `load` call) across threads.
 
 Rust provides atomics for all of the primitive types, but does *not* provide a general Atomic wrapper for other types. Rust's atomic primitives are pretty much a 1:1 match with CPU intrinsics, which don't generally offer sync+send atomic protection for complicated types.
 

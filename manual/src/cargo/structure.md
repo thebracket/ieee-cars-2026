@@ -2,9 +2,10 @@
 
 Some terminology first — it's looser in most languages, but precise in Rust:
 
-* A **crate** is a Rust package: one `Cargo.toml`, one compilation unit.
+* A **crate** is a Rust compilation unit: one library or one binary.
 * A **binary** is a crate with `src/main.rs`. A **library** is a crate with
-  `src/lib.rs`. (A crate can be both.)
+  `src/lib.rs`. A single `Cargo.toml` can describe a library crate and several
+  binary crates.
 * A **module** is a subdivision *within* a crate — Rust's unit of code
   organization and privacy.
 * A **workspace** is several crates sharing one build: one `target/`, one

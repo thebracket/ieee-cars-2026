@@ -4,7 +4,9 @@ fn main() {
     const N_THREADS: usize = 8;
 
     let to_add: Vec<u32> = (0..5000).collect();
-    let chunks = to_add.chunks(N_THREADS);
+    // `chunks` takes the size of each chunk, not the number of chunks.
+    let chunk_size = to_add.len().div_ceil(N_THREADS).max(1);
+    let chunks = to_add.chunks(chunk_size);
     let sum = thread::scope(|s| {
         let mut thread_handles = Vec::new();
 

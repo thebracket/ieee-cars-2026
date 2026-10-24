@@ -61,9 +61,19 @@ void printme(std::string s) {
 int main() {
   std::string s = "hello world";
   printme(std::move(s));
-  std::cout << s << '\n'; // Valid but unspecified behavior, s is "moved from". It varies by compiler/platform from an empty string, the original text, or a segfault!
+  // Moved-from: valid but unspecified. It usually prints nothing, but an
+  // older MSVC crashed here. Never rely on the value.
+  std::cout << s << '\n';
 }
 ```
+
+After the move, `s` is *moved-from*: still a valid `std::string`, but with an
+unspecified value. Most implementations leave it empty, so this usually prints
+a blank line — which makes the problem easy to miss, and tempting to treat as a
+guarantee. It isn't. In testing, an older MSVC build segfaulted on this exact
+line, and the contents can differ across standard libraries and versions.
+Use-after-move in C++ is unpredictable in practice, even when it happens to
+look harmless.
 
 C++ (and C) have the concept of *ownership*, but it isn't explicit. When you make a `unique_ptr`, you own it - and you *move* it to other owners. Rust makes this
 explicit. Everything is owned by a scope.

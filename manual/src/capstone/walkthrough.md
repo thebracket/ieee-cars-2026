@@ -41,13 +41,17 @@ fn load_flows(path: &PathBuf) -> Result<Vec<Flow>, ReportError> {
 ## Step 2: The Totals
 
 ```rust
+// The sample totals fit in u64; untrusted input needs checked_add.
 let total_bytes: u64 = flows.iter().map(|f| f.bytes).sum();
 println!("Flows: {}", flows.len());
 println!("Total bytes: {total_bytes}");
 ```
 
 `map` turns each flow into its byte count, `sum` adds them up. Note the
-annotation: the compiler needs to know which integer type to sum into.
+annotation: the compiler needs to know which integer type to sum into. The
+addition is unchecked: fine for this fixed sample, but a crafted log could
+overflow the total, so untrusted input calls for `checked_add` and a typed
+error instead.
 
 ## Step 3: Bytes per Source IP
 
@@ -130,8 +134,8 @@ Flows by destination port:
 Everything used here — `Deserialize`, `HashMap` and the `entry` API, iterator
 chains, `Option`/`Result`, `?`, `thiserror`, `sort` — appeared earlier today.
 That's not a coincidence: it's the toolkit for secure systems work. A log goes
-in, a typed analysis comes out, and malformed input can only ever produce an
-`Err`, never a crash or undefined behavior.
+in, a typed analysis comes out, and malformed JSON is reported as a typed `Err`
+instead of an exception or a silent partial result.
 
 > Notice the story the report tells: `203.0.113.99` sent the most bytes while
 > making only three connections — and in the event-log lab earlier, that same

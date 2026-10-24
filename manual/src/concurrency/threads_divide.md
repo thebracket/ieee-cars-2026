@@ -11,7 +11,11 @@ fn main() {
 
     let to_add: Vec<u32> = (0..5000).collect(); // Shorthand for building a vector [0,1,2 .. 4999]
     let mut thread_handles = Vec::new();
-    let chunks = to_add.chunks(N_THREADS);
+    // `chunks` takes the size of each chunk, not the number of chunks. Round up
+    // so we get at most `N_THREADS` chunks. `max(1)` keeps `chunks` happy if
+    // `to_add` is empty.
+    let chunk_size = to_add.len().div_ceil(N_THREADS).max(1);
+    let chunks = to_add.chunks(chunk_size);
 
     // Notice that each chunk is a *slice* - a reference - to part of the array.    
     for chunk in chunks {
@@ -44,7 +48,7 @@ There's a lot to unpack here, so I've added comments:
 1. We use a constant to define how many threads we want to use. This is a good idea, because it makes it easy to change the number of threads later. We'll use 8 threads, because my laptop happens to have 8 cores.
 2. We create a vector of numbers to add up. We use the `collect` function to build a vector from an iterator. We'll lean on iterators throughout, but for now, just know that `collect` builds a vector from a range. This is a handy shorthand for turning any range into a vector.
 3. We create a vector of thread handles. We'll use this to join the threads later.
-4. We use the `chunks` function to divide the vector into chunks. This returns an iterator, so we can use it in a `for` loop. Chunks aren't guaranteed to be of equal size, but they're guaranteed to be as close to equal as possible. The last chunk will be smaller than the others.
+4. We work out how large each chunk should be with `to_add.len().div_ceil(N_THREADS)`. The `chunks` function takes the *size of each chunk* --- not the number of chunks --- so we divide the input length by the desired thread count ourselves. Rounding up with `div_ceil` gives us *at most* eight chunks. The `.max(1)` avoids a zero chunk size if the vector is empty. `chunks` returns an iterator, so we can use it in a `for` loop. Every chunk is the requested size, except that the last chunk may be smaller.
 5. Now we hit a problem:
     * `chunks` is a vector owned by the main thread.
     * Each chunk is a slice --- a borrowed reference --- to part of the vector.

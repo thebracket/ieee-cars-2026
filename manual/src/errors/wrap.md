@@ -35,12 +35,21 @@ errors that are part of your API's type signature, not a comments-and-hope syste
 
 ## Safe Arithmetic
 
-One last "can't ignore it". This is perfectly legal C — and undefined behavior:
+One last "can't ignore it". This compiles cleanly in C — and is undefined
+behavior:
 
 ```c
-char a = 127;
-a = a + 1; // Overflow: -128 in practice, UB in theory
+#include <limits.h>
+
+int a = INT_MAX; // 2147483647 on typical platforms
+a = a + 1;       // Signed overflow: undefined behavior
 ```
+
+The compiler is allowed to assume signed overflow never happens; in practice it
+often wraps to `INT_MIN`, which is exactly why the bug survives testing. (The
+older `char` version of this example was really showing *integer promotion*:
+`a + 1` is computed as an `int` before being converted back to `char` — a
+separate surprise, but not the overflow this section is about.)
 
 In Rust, overflow **panics in debug builds** and wraps silently in release. That
 difference is a footgun, so for anything security-relevant, be explicit — the
@@ -48,7 +57,7 @@ same theme as everything today:
 
 ```rust
 let a: i8 = 127;
-a.checked_add(1)    // Option<i32-ish>: None if it would overflow
+a.checked_add(1)    // Option<i8>: None if it would overflow
 a.saturating_add(1) // Clamps at the maximum: 127
 a.wrapping_add(1)   // -128, opt-in wrapping (crypto code loves this)
 ```

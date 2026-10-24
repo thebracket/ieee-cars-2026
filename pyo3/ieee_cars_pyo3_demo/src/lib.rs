@@ -32,7 +32,11 @@ mod ieee_cars_pyo3_demo {
                 "Dividing by zero will ruin your day",
             ))
         } else {
-            Ok(a / b)
+            // `i32::MIN / -1` doesn't fit in an i32, and plain `/` would panic.
+            // `checked_div` returns `None` instead, so we can raise normally.
+            a.checked_div(b).ok_or_else(|| {
+                PyArithmeticError::new_err("The result doesn't fit in a 32-bit integer")
+            })
         }
     }
 
@@ -66,8 +70,8 @@ mod ieee_cars_pyo3_demo {
 
     /// The same analysis, but with the GIL released while Rust works.
     ///
-    /// Python data can't cross into the detached closure by reference, so we
-    /// copy the text into an owned `String` first.
+    /// Copying into an owned `String` is a deliberate choice, not a `detach`
+    /// requirement: the detached closure works on data it owns outright.
     #[pyfunction]
     fn word_frequencies_detached(py: Python<'_>, text: &str) -> HashMap<String, usize> {
         let owned = text.to_string();

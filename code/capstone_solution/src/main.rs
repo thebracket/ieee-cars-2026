@@ -33,6 +33,9 @@ fn main() -> Result<(), ReportError> {
     let flows = load_flows(&log_path)?;
 
     // Part 1: the basics.
+    // The sample data fits comfortably in u64, so plain addition is fine here.
+    // A real collector reading untrusted logs would use checked_add for this
+    // total and the per-IP total below, and report an overflow error.
     let total_bytes: u64 = flows.iter().map(|f| f.bytes).sum();
     println!("Flows: {}", flows.len());
     println!("Total bytes: {total_bytes}");

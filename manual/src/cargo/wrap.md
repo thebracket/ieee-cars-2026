@@ -20,8 +20,8 @@ starting point for every real Rust codebase.
 Session 2 puts it to work: parsing and data handling with **Serde** — which,
 now that you can read `[dependencies]`, is the most-deployed dependency family
 in the Rust ecosystem — then fearless concurrency, and the lifetimes you've
-been using all day without knowing it. We'll finish with a capstone: a
-parallel file-integrity checker.
+been using all day without knowing it. We'll finish with a capstone: a traffic
+report built from a JSON log.
 
 > If you're staying for Session 3, make sure Python with `venv` support is
 > installed — we'll bridge all of this into Python with PyO3.

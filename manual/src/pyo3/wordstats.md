@@ -125,9 +125,6 @@ Python. When you care about speed:
 maturin develop --release
 ```
 
-(The benchmark also asserts Python and Rust agree on the results before timing
-anything. Correctness before performance — the habit is the point.)
-
 ## The GIL
 
 A big Rust call from Python doesn't automatically make Python faster as a
@@ -145,10 +142,13 @@ For a long computation called from threaded Python, you can let go:
     }
 ```
 
-The copy is not an accident: Python data can't cross into the detached closure
-by reference. PyO3's type system forces you to take an owned `String`, so the
-thread running without the GIL can't be looking at memory another Python thread
-is allowed to change.
+The copy is a deliberate choice, not something `detach` requires. The closure
+runs to completion before `detach` returns, so borrowing `text` directly also
+compiles; PyO3 rejects Python-owned handles such as `Py<PyString>`, not an
+ordinary Rust borrow like this. We copy here so the code running without the
+GIL owns all of its data outright: a simple, conservative habit for a teaching
+demo. It is not a universal rule, and it does not make arbitrary Python objects
+safe to share across threads.
 
 The benchmark runs the analysis from four Python threads at once:
 
