@@ -3,9 +3,9 @@
 ![Ardan Labs](./manual/src/ardanlabs-logo.png)
 
 > **Work in progress.** This is the live-teaching material for the IEEE-CARS 2026
-> workshops. Sessions 1–3 — the manual, the numbered examples, the capstone, and
-> the PyO3 project — are written and verified. The optional *Spares* chapters are
-> still placeholders, and everything is subject to proof-reading before the event.
+> workshops. Sessions 1–3 include the manual, numbered examples, a JSON
+> traffic-report capstone, and a PyO3 project. Everything is subject to
+> proof-reading before the event.
 
 Live-teaching material for the IEEE-CARS 2026 workshops (Grand Forks, ND,
 October 27, 2026). Three 2-hour sessions:
@@ -15,6 +15,25 @@ October 27, 2026). Three 2-hour sessions:
 | 10:15 – 12:15 | Session 1 — Core Rust, Ownership, Borrowing, Safe Error Handling, Cargo & Dependencies |
 | 1:00 – 3:00 | Session 2 — Safe Parsing, Data Handling, Fearless Concurrency, Lifetimes & Smart Pointers |
 | 3:15 – 5:15 | Session 3 — Accelerating Python with Rust: PyO3, Maturin, Project Structure & Packaging |
+
+## What the Sessions Cover
+
+* **Session 1 — Rust foundations:** ownership, moves and borrowing; enums,
+  `Option`, `Result` and custom errors; then Cargo project structure, visibility,
+  dependencies and supply-chain considerations.
+* **Session 2 — Working with data safely:** strings, collections and iterators
+  lead into a JSON security event-log example that counts errors by source IP.
+  Threads, atomics, mutexes and Rayon introduce concurrency, followed by
+  lifetimes, RAII and smart pointers. The traffic-report capstone reads JSON
+  network-flow records and reports total bytes, bytes per source IP, the top
+  talker and flow counts per destination port, with a starter and worked solution.
+  This is log analysis, not packet capture or packet parsing.
+* **Session 3 — A working Python extension:** build and call Rust from Python
+  with PyO3 and Maturin, translate Rust errors into Python exceptions, and use
+  Rayon for word-frequency analysis. Compare debug and release performance,
+  then package the extension as a wheel and install it in a fresh environment.
+  GIL handling and `detach` for threaded Python are optional further reading in
+  the afterword, not required to complete the live session.
 
 ## Repository Layout
 
@@ -122,10 +141,10 @@ python wordstats.py --mb 16        # the benchmark demo
 | [ex17_strings](code/ex17_strings) | [Rust's Many String Types](manual/src/parsing/strings.md) | UTF-8: bytes vs chars, safe slicing |
 | [ex18_collections](code/ex18_collections) | [Collections and Bounds](manual/src/parsing/collections.md) | Arrays, Vec, HashMap; `.get()` returns `Option` |
 | [ex19_iterators](code/ex19_iterators) | [Iterators](manual/src/parsing/iterators.md) | Chained map/filter/fold/zip |
-| [ex20_eventlog](code/ex20_eventlog) | [Lab: The JSON Event Log](manual/src/parsing/lab.md) | Serde + thiserror: parse an event log, count alerts |
-| [capstone_starter](code/capstone_starter) | [Capstone: The Traffic Report](manual/src/capstone/intro.md) | Starter skeleton with TODOs |
-| [capstone_solution](code/capstone_solution) | [Walkthrough](manual/src/capstone/walkthrough.md) | The worked answer: JSON in, traffic report out |
-| [pyo3/ieee_cars_pyo3_demo](pyo3/ieee_cars_pyo3_demo) | [The Word Stats Demo](manual/src/pyo3/wordstats.md) | PyO3 + Rayon word stats, GIL handling, wheel building |
+| [ex20_eventlog](code/ex20_eventlog) | [Lab: The JSON Event Log](manual/src/parsing/lab.md) | Serde + thiserror: parse JSON events, count errors by source IP and total warnings |
+| [capstone_starter](code/capstone_starter) | [Capstone: The Traffic Report](manual/src/capstone/intro.md) | JSON flow types and loading provided; TODOs for the report |
+| [capstone_solution](code/capstone_solution) | [Walkthrough](manual/src/capstone/walkthrough.md) | Flow and byte totals, bytes by source IP, top talker and flow counts by destination port |
+| [pyo3/ieee_cars_pyo3_demo](pyo3/ieee_cars_pyo3_demo) | [The Word Stats Demo](manual/src/pyo3/wordstats.md) | Python-callable Rust word stats with Rayon, release benchmarks and wheel building; optional threaded-Python comparison |
 
 ## Contents
 
@@ -178,7 +197,3 @@ python wordstats.py --mb 16        # the benchmark demo
   - [Maturin: Packaging and Wheels](manual/src/pyo3/packaging.md)
 - **Afterword — Optional Further Reading**
   - [Detaching for Threaded Python (Not Required Live)](manual/src/pyo3/afterword.md)
-- **Spares — If Time Allows** *(placeholders, still being written)*
-  - Clap CLI Lab
-  - Packet Analyser Task
-  - Data Accumulator Task
