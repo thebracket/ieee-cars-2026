@@ -103,7 +103,7 @@ your colleagues receive.
 
 ## That's the Session
 
-You've gone from a Python function to a compiled, parallel, GIL-aware Rust
+You've gone from a Python function to a compiled, parallel Rust
 extension, packaged as a wheel and installed into a clean environment. The same
 pattern scales from a word counter to packet parsers, crypto kernels, and data
 engines — Python for the orchestration, Rust for the hot paths.
@@ -114,5 +114,10 @@ engines — Python for the orchestration, Rust for the hot paths.
 * Maturin — <https://www.maturin.rs>
 * The Rust Book — <https://doc.rust-lang.org/book/>
 * Rayon — <https://docs.rs/rayon>
+
+The extension works, the release benchmark shows a meaningful speedup, and the
+wheel makes it shareable. That's a complete result to take home. There is always
+more: the [optional afterword](afterword.md) explores `detach` and threaded Python
+at your own pace; it is not required for the live session.
 
 Any questions? Let's hear them.

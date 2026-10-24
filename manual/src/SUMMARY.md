@@ -50,6 +50,8 @@
     - [PyResult: Errors Across the Fence](./pyo3/pyresult.md)
   - [The Word Stats Demo — ~55 min](./pyo3/wordstats.md)
   - [Maturin: Packaging and Wheels — ~25 min](./pyo3/packaging.md)
+- [Afterword — Optional Further Reading]()
+  - [Detaching for Threaded Python (Not Required Live)](./pyo3/afterword.md)
 - [Spares — If Time Allows]()
   - [Clap CLI Lab]()
   - [Packet Analyser Task]()

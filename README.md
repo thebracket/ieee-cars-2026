@@ -176,6 +176,8 @@ python wordstats.py --mb 16        # the benchmark demo
     - [PyResult: Errors Across the Fence](manual/src/pyo3/pyresult.md)
   - [The Word Stats Demo](manual/src/pyo3/wordstats.md)
   - [Maturin: Packaging and Wheels](manual/src/pyo3/packaging.md)
+- **Afterword — Optional Further Reading**
+  - [Detaching for Threaded Python (Not Required Live)](manual/src/pyo3/afterword.md)
 - **Spares — If Time Allows** *(placeholders, still being written)*
   - Clap CLI Lab
   - Packet Analyser Task

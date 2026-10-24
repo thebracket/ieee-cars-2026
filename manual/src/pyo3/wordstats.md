@@ -14,7 +14,7 @@ def py_word_frequencies(text):
 
 > Fair warning before any benchmarking: Python's `Counter` is *C code* under the
 > hood. It is genuinely fast. This demo is about seeing the Rust pipeline in
-> action, and meeting the GIL.
+> action, and measuring a useful speedup.
 
 Everything here lives in `pyo3/ieee_cars_pyo3_demo/src/lib.rs`, and the
 benchmark that produced the numbers below is `wordstats.py`.
@@ -131,48 +131,18 @@ Python. When you care about speed:
 maturin develop --release
 ```
 
-## The GIL
+## A Working Extension, a Measured Speedup
 
-A big Rust call from Python doesn't automatically make Python faster as a
-*whole*. PyO3 holds the **Global Interpreter Lock** for the duration of a call:
-while Rust computes, other Python threads are blocked from executing bytecode.
+Python called our Rust extension, Rayon spread the work across cores, and the
+release build delivered a meaningful speedup on this corpus. That's the core
+outcome: keep Python for orchestration and move the measured hot path into Rust.
 
-For a long computation called from threaded Python, you can let go:
-
-```rust
-    /// The same analysis, but with the GIL released while Rust works.
-    #[pyfunction]
-    fn word_frequencies_detached(py: Python<'_>, text: &str) -> HashMap<String, usize> {
-        let owned = text.to_string();
-        py.detach(move || word_frequencies(&owned))
-    }
-```
-
-The copy is a deliberate choice, not something `detach` requires. The closure
-runs to completion before `detach` returns, so borrowing `text` directly also
-compiles; PyO3 rejects Python-owned handles such as `Py<PyString>`, not an
-ordinary Rust borrow like this. We copy here so the code running without the
-GIL owns all of its data outright: a simple, conservative habit for a teaching
-demo. It is not a universal rule, and it does not make arbitrary Python objects
-safe to share across threads.
-
-The benchmark runs the analysis from four Python threads at once:
-
-```
-4 Python threads, each running the analysis (16 MB corpus):
-  GIL held (default)                0.284s
-  GIL released (detached)           0.129s
-```
-
-With the GIL held, the four calls serialize — you're watching a language boundary.
-With `detach`, they overlap and the machine's cores stay busy. Same results, half
-the wall-clock.
-
-> **When should you reach for `detach`?** When the Rust work is long-running and
-> called from a threaded Python program — servers are the classic case. For a
-> quick function call, the GIL handoff costs more than it saves.
+There is always more to explore. The [optional afterword](afterword.md) covers
+the GIL, `detach`, and calls from multiple Python threads — further reading,
+not another requirement for the live session. The supplied benchmark includes
+that threaded comparison too; we can leave its explanation for the afterword.
 
 ## Next
 
 One thing remains between this demo and something your colleagues can
-`pip install`: **packaging it as a wheel**.
+`pip install`: **[packaging it as a wheel](packaging.md)**.

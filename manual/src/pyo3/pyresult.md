@@ -86,4 +86,4 @@ in `pyo3::exceptions`, and your `Err` can carry any of them — or be constructe
 from something richer later.
 
 Next: put a *real* Rust function behind Python — the word stats demo, with Rayon
-under the hood and the GIL to talk about.
+under the hood and a speedup to measure.

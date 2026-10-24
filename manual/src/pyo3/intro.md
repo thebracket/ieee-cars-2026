@@ -47,8 +47,8 @@ session ends.)
 2. **Hello World from Rust**, called from Python — the moment it clicks.
 3. **Errors across the boundary** — `PyResult`, where Rust's `Err` becomes a
    Python exception.
-4. **The word stats demo** — a real Rust function, parallelized with Rayon, and
-   the GIL story.
+4. **The word stats demo** — a real Rust function, parallelized with Rayon, with
+   a measured release-build speedup.
 5. **Package it** — `maturin build`, a wheel, and `pip install`.
 
 > Everything lives in the repo's `pyo3/` directory — deliberately *outside* the
