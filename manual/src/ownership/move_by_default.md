@@ -61,19 +61,17 @@ void printme(std::string s) {
 int main() {
   std::string s = "hello world";
   printme(std::move(s));
-  // Moved-from: valid but unspecified. It usually prints nothing, but an
-  // older MSVC crashed here. Never rely on the value.
+  // Moved-from: valid but unspecified. Usually reset to empty,
+  // but don't rely on that; printing the valid string is permitted.
   std::cout << s << '\n';
 }
 ```
 
 After the move, `s` is *moved-from*: still a valid `std::string`, but with an
-unspecified value. Most implementations leave it empty, so this usually prints
-a blank line — which makes the problem easy to miss, and tempting to treat as a
-guarantee. It isn't. In testing, an older MSVC build segfaulted on this exact
-line, and the contents can differ across standard libraries and versions.
-Use-after-move in C++ is unpredictable in practice, even when it happens to
-look harmless.
+unspecified value. In practice, it is usually reset to empty, so this prints a
+blank line. That empty value is not guaranteed: don't rely on the previous
+contents or assume the string must now be empty. Printing it is permitted;
+Rust instead rejects using the moved value at compile time.
 
 C++ (and C) have the concept of *ownership*, but it isn't explicit. When you make a `unique_ptr`, you own it - and you *move* it to other owners. Rust makes this
 explicit. Everything is owned by a scope.
