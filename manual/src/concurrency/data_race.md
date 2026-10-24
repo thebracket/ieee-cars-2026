@@ -77,15 +77,16 @@ If you've used `std::thread`, you've probably also run into atomic types. An ato
 
 ## Why Does This Work?
 
-So how does Rust know that it *isn't* safe to share an integer---but it is safe to share an atomic? Rust has two traits that self-implement (and can be overridden in unsafe code): `Sync` and `Send`.
+So why can threads share an integer for reading, but not freely mutate it? Rust combines borrowing rules with two traits: `Send` and `Sync`.
 
-* A `Sync` type can be safely used with a reference between threads - it has a *synchronization* primitive.
-* A `Send` type can be sent between threads - it isn't going to do bizarre things because it is being accessed from multiple places.
+* A `Send` type can have its ownership safely transferred to another thread.
+* A `Sync` type can have shared references safely sent between threads: `T: Sync` means `&T: Send`.
 
-Send and Sync are automatically implemented by the compiler when they apply. The majority of types are `Send` (`Rc` explicitly opts out of being `Send` - it is a *single-threaded* reference counter). Most types are not `Sync` - but synchronization primitives (atomics, mutexes, etc.) provide `Sync` safety:
-* You can access an atomic or mutex across threads - while still allowing controlled mutation - safely because the synchronization primitive provides `Sync`.
+`Send` and `Sync` are automatically implemented by the compiler when a type's components allow it. `Rc` is neither: its reference count is designed for single-threaded use.
 
-For example, a bare `i32` can be sent between threads, but only safely referenced across threads if it is constant. An `AtomicI32` guarantees thread-safe mutation, so it can be safely read (via the `load` call) across threads.
+A bare `i32` is both `Send` and `Sync`, without any synchronization primitive. Shared references prevent ordinary mutation of the value while those references are alive; the binding need not be `const` or permanently immutable.
+
+Mutation through shared references requires interior mutability. Across threads, this needs an appropriate thread-safe mechanism, such as an atomic or a mutex. For example, `AtomicI32` supports shared reads with `load` and updates with operations such as `fetch_add`.
 
 Rust provides atomics for all of the primitive types, but does *not* provide a general Atomic wrapper for other types. Rust's atomic primitives are pretty much a 1:1 match with CPU intrinsics, which don't generally offer sync+send atomic protection for complicated types.
 
@@ -97,6 +98,6 @@ And here's the theme for the rest of this section: **C++ gives you the tools and
 
 ## Summary
 
-Rust's data race protection is very thorough. The borrow-checker prevents multiple mutable accesses to a variable, and the `Sync+Send` system ensures that variables that are accessed in a threaded context can both be sent between threads and safely mutated from multiple locations. It's extremely hard to create a data race in safe Rust (you can use the `unsafe` tag and turn off protections if you need to)---and if you succeed in making one, the Rust core team will file it as a bug.
+Rust's data race protection combines borrowing rules with `Send` and `Sync`: ownership can cross threads when the type is `Send`, and shared references can cross threads when the type is `Sync`. These traits do not permit unrestricted shared mutation; that requires appropriate thread-safe interior mutability. Safe Rust prevents data races. `unsafe` does not turn off the borrow checker: it allows specific operations whose safety requirements the programmer must uphold.
 
 All of these safety guarantees add up to create an environment in which common bugs are hard to create. You do have to jump through a few hoops, but once you are used to them---you can fearlessly write concurrent code knowing that Rust will make the majority of multi-threaded bugs a compilation error rather than a difficult debugging session.
