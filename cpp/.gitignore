@@ -1,0 +1,10 @@
+# CMake build trees and everything produced inside them
+build/
+cmake-build-*/
+CMakeUserPresets.json
+
+# In-source build artifacts, in case a demo is compiled by hand
+*.o
+*.obj
+*.dSYM/
+a.out
