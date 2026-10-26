@@ -6,4 +6,4 @@ edition = "2024"
 [dependencies]
 
 [workspace]
-members = [ "ex01_movefail" , "ex02_movearound", "ex03_errors", "ex03_errors_part2", "ex04_org", "ex05_data_race", "ex06_spawn_threads", "ex07_threads_divide", "ex08_scoped_threads", "ex09_rayon", "ex11_rust_atomic", "ex12_rust_mutex", "ex13_drop", "ex14_box", "ex15_rc_arc", "ex16_borrow_checker", "ex17_strings", "ex18_collections", "ex19_iterators", "ex20_eventlog", "capstone_starter", "capstone_solution"]
+members = [ "ex01_movefail" , "ex02_movearound", "ex03_errors", "ex03_errors_part2", "ex03_errors_part3", "ex04_org", "ex05_data_race", "ex06_spawn_threads", "ex07_threads_divide", "ex08_scoped_threads", "ex09_rayon", "ex11_rust_atomic", "ex12_rust_mutex", "ex13_drop", "ex14_box", "ex15_rc_arc", "ex16_borrow_checker", "ex17_strings", "ex18_collections", "ex19_iterators", "ex20_eventlog", "capstone_starter", "capstone_solution"]

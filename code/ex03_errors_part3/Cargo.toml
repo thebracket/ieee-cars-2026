@@ -1,0 +1,4 @@
+[package]
+name = "ex03_errors_part3"
+version = "0.1.0"
+edition = "2024"
