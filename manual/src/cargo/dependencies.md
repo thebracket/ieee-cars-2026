@@ -14,6 +14,11 @@ One line, and your program compiles with a code-generating library pulled from
 auto-publishes API documentation for everything on it — when an LLM isn't
 handy, `cargo doc --open` builds docs for your *dependencies*, too.)
 
+There are many thousands of crates on crates.io, and it is **really hard** to
+know which ones to use. [blessed.rs](https://blessed.rs) provides a curated list
+of crates that have been vetted — a sensible starting point when choosing a
+dependency.
+
 ## Semver, and the Lockfile
 
 The `"2"` is shorthand for `^2.0.0`: "any 2.x.y ≥ 2.0.0". Within a version
