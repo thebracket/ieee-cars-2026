@@ -1,5 +1,7 @@
 # Capstone: The Traffic Report
 
+> The code for this is in `code/capstone_starter` and `code/capstone_solution`.
+
 It's the last exercise of the day, and everything you need, you've already met:
 JSON parsing with Serde, `HashMap`, iterators, and `Result` errors.
 

@@ -94,8 +94,10 @@ All Session 1 and 2 examples are members of the `code/` workspace:
 
 ```bash
 cd code
-cargo run -p ex02_movearound      # run any example by name
-cargo check -p ex20_eventlog      # or check just one
+cargo run -p ex02_movearound         # run any example by name
+cargo run -p ex03_errors             # Option/Result example
+cargo run -p ex03_errors_part2       # custom thiserror example
+cargo check -p ex20_eventlog         # or check just one
 ```
 
 > `ex01_movefail` **intentionally fails to compile** — that's the lesson (the
@@ -125,7 +127,8 @@ python wordstats.py --mb 16        # the benchmark demo
 |---------|---------|---------------|
 | [ex01_movefail](code/ex01_movefail) | [Why Doesn't this Work?](manual/src/ownership/move_by_default.md) | The move-by-default compile error---on purpose |
 | [ex02_movearound](code/ex02_movearound) | [Move it Around](manual/src/ownership/move_it_around.md) | Passing ownership with move-and-return |
-| [ex03_errors](code/ex03_errors) | [Safe Error Handling](manual/src/errors/intro.md) | Option, Result, `?`, and a `thiserror` enum (`--bin custom_error`) |
+| [ex03_errors](code/ex03_errors) | [Safe Error Handling](manual/src/errors/intro.md) | `Option`, `Result`, `?`, and deliberately ignoring a `Result` |
+| [ex03_errors_part2](code/ex03_errors_part2) | [Wrap Up: Custom Errors](manual/src/errors/wrap.md) | A `thiserror` enum for custom error types |
 | [ex04_org](code/ex04_org) | [Project Structure and Visibility](manual/src/cargo/structure.md) | Inline, file-based, and directory modules; private-by-default |
 | [ex05_data_race](code/ex05_data_race) | [Data-Race Protection](manual/src/concurrency/data_race.md) | The shared counter, fixed with atomics |
 | [ex06_spawn_threads](code/ex06_spawn_threads) | [Spawning Threads](manual/src/concurrency/spawn_threads.md) | `thread::spawn`, `move` closures, returning values via `join` |

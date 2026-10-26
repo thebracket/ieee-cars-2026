@@ -1,5 +1,7 @@
 # Maturin: Packaging and Wheels
 
+> The code for this is in `pyo3/ieee_cars_pyo3_demo`.
+
 Your Python colleagues don't want your source directory — they want something
 `pip install` can consume. That's a **wheel**: a zip file containing your
 compiled extension, metadata, and hashes.

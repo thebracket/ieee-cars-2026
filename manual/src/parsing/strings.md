@@ -1,5 +1,7 @@
 # Rust's Many String Types
 
+> The code for this is in `code/ex17_strings`.
+
 I once proof-read a book proposal that started with `String` as the *first* type
 taught. I marked it as a "brave choice", because Rust has... so many string types:
 
@@ -36,7 +38,7 @@ Rust strings are **UTF-8**, not arrays of 8-bit ASCII. Everything that implies:
 * A Rust `char` is 4 bytes — a full Unicode scalar value. Its UTF-8 *encoding* is
   1 to 4 bytes; ASCII's guarantee of "one byte, one character" is gone.
 
-> The code for this is in `code/ex17_strings`. Run it:
+Run it:
 
 ```
 Bytes: 12

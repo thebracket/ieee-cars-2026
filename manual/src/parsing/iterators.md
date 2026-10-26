@@ -1,5 +1,7 @@
 # Iterators: Owning and Borrowing
 
+> The code for this is in `code/ex19_iterators`.
+
 `for` loops in Rust *are* iterators — and which iterator you get decides whether
 you're borrowing your collection or consuming it.
 
@@ -40,7 +42,7 @@ my_vec
 `collect()` reads beautifully but needs to know *what* to collect into — that's
 what the `Vec<String>` annotation is for.
 
-> The code for this is in `code/ex19_iterators`. Run it:
+Run it:
 
 ```
 [(1, "1"), (2, "2"), (3, "3"), (4, "4")]

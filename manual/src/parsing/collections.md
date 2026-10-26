@@ -1,5 +1,7 @@
 # Collections and Bounds
 
+> The code for this is in `code/ex18_collections`.
+
 Rust's standard library ships the containers you'd expect from C++ — with the
 safety defaults flipped.
 
@@ -80,7 +82,7 @@ The standard library also has `VecDeque` (a double-ended queue), `BTreeMap` /
 `BTreeSet` (ordered), `HashSet`, `LinkedList` (yes, really — writing one in Rust is
 notoriously harder than using the provided one), and `BinaryHeap`.
 
-> The code for this is in `code/ex18_collections`. Run it:
+Run it:
 
 ```
 No element 5 -- and no reading past the end

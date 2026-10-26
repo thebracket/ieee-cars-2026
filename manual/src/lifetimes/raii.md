@@ -1,5 +1,7 @@
 # RAII and Drop
 
+> The code for this is in `code/ex13_drop` and `code/ex16_borrow_checker`.
+
 C++ invented RAII — Resource Acquisition Is Initialization — and Rust adopts it
 wholesale. There's no `~MyClass()`: destructors are implemented by a trait named
 `Drop`.
@@ -21,8 +23,6 @@ forgotten `free`, no leak.
 
 `Drop` fires *exactly once*, wherever the value actually dies — including in the
 middle of a move:
-
-> The code for this is in `code/ex13_drop` and `code/ex16_borrow_checker`.
 
 ```rust
 fn do_it(a: MyStruct) { /* ... */ }          // owns a; drops it on return

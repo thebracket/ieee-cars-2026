@@ -1,5 +1,7 @@
 # Smart Pointers: Box, Rc, Arc
 
+> The code for this is in `code/ex14_box` and `code/ex15_rc_arc`.
+
 The C++ translations:
 
 | Rust | C++ equivalent | Ownership |
@@ -19,15 +21,13 @@ fn main() {
 }
 ```
 
-> The code for this is in `code/ex14_box`.
-
 A `Box` puts its contents on the *heap* and owns them. You reach for it when:
 
 * **Recursive types** need indirection (a tree node holding a `Box<Node>`) — an
   inline `Node` would be infinitely sized.
 * **Large values** shouldn't be copied around the stack.
-* You need a **trait object**: `Box<dyn Error>` (that's how the generic error type
-  in `ex03_errors` worked, before `thiserror`).
+* You need a **trait object**: `Box<dyn Error>` — the generic error type you
+  reach for before defining a custom error enum.
 
 ## Rc: Shared Ownership
 
@@ -39,8 +39,6 @@ move_it(shared.clone());  // clone -> count 2 for the call
 ref_it(&shared);          // move_it returned, its Rc dropped -> count 1
 // shared goes out of scope -> "Dropping", exactly once
 ```
-
-> The code for this is in `code/ex15_rc_arc`.
 
 `clone()` on an `Rc` doesn't copy the data — it bumps a reference counter and
 hands you another pointer to the same value. `move_it` takes that clone by

@@ -1,5 +1,7 @@
 # Setup: venv, Maturin, and `maturin develop`
 
+> The code for this is in `pyo3/ieee_cars_pyo3_demo`.
+
 This is the page that makes the rest of the session possible. Follow along — the
 TA team will circulate.
 

@@ -66,6 +66,10 @@ version = "0.1.0"
 [[package]]
 name = "ex03_errors"
 version = "0.1.0"
+
+[[package]]
+name = "ex03_errors_part2"
+version = "0.1.0"
 dependencies = [
  "thiserror",
 ]

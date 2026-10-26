@@ -1,5 +1,7 @@
 # Option: No More Null
 
+> The code for this is in `code/ex03_errors`.
+
 Safe Rust has no null. Not "null but you have to be careful" — *no null*. When a
 value may or may not be present, you get an `Option<T>`: `Some(value)` or `None`.
 There is no third state, and there is no pretending an `Option<String>` is a

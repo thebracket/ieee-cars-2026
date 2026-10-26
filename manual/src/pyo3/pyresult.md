@@ -1,5 +1,7 @@
 # PyResult: Errors Across the Fence
 
+> The code for this is in `pyo3/ieee_cars_pyo3_demo/src/lib.rs`.
+
 Python handles errors with **exceptions**. Rust handles them with **`Result`** —
 a value that's either `Ok(T)` or `Err(E)`, which you cannot accidentally ignore.
 

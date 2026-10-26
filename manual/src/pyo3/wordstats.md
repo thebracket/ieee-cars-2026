@@ -1,5 +1,8 @@
 # The Word Stats Demo
 
+> The code for this is in `pyo3/ieee_cars_pyo3_demo/src/lib.rs`; the benchmark
+> that produced the numbers below is `pyo3/ieee_cars_pyo3_demo/wordstats.py`.
+
 Time for the real thing. The task: given a big block of text, produce word
 statistics — how many words, how often each appears, and which are most common.
 
@@ -15,9 +18,6 @@ def py_word_frequencies(text):
 > Fair warning before any benchmarking: Python's `Counter` is *C code* under the
 > hood. It is genuinely fast. This demo is about seeing the Rust pipeline in
 > action, and measuring a useful speedup.
-
-Everything here lives in `pyo3/ieee_cars_pyo3_demo/src/lib.rs`, and the
-benchmark that produced the numbers below is `wordstats.py`.
 
 > **Scope of the comparison:** The Python and Rust versions agree on the supplied
 > benchmark corpus, not necessarily every possible input. Python's `str.split()`

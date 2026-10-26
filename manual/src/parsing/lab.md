@@ -1,5 +1,11 @@
 # Lab: The JSON Event Log
 
+> The code for this is in `code/ex20_eventlog`. Run it:
+
+```bash
+cargo run -p ex20_eventlog
+```
+
 Time to put the morning together. The scenario: a security event log — one JSON
 object per event — and you need **alert counts per source IP**.
 
@@ -11,12 +17,6 @@ object per event — and you need **alert counts per source IP**.
 Everything we've covered shows up in this lab: file reading and the `?` operator,
 enums, `Result` with a `thiserror` type, `HashMap`, iterators, and — today's topic —
 safe parsing of untrusted text.
-
-> The code for this is in `code/ex20_eventlog`. Run it:
-
-```bash
-cargo run -p ex20_eventlog
-```
 
 ## Making the Data Deserializable
 

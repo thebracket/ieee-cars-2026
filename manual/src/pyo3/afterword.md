@@ -1,5 +1,7 @@
 # Afterword: Detaching for Threaded Python
 
+> The code for this is in `pyo3/ieee_cars_pyo3_demo/src/lib.rs`.
+
 **Optional further reading — not required for the live session.** We already
 have a working extension and a measured speedup. There is always more to
 explore: this chapter looks at long-running Rust calls from threaded Python.

@@ -1,7 +1,9 @@
 # Capstone Walkthrough
 
+> The code for this is in `code/capstone_solution/src/main.rs`.
+
 Every piece of this is something we've covered today. Here's the thought process,
-step by step. The finished code is `code/capstone_solution/src/main.rs`.
+step by step.
 
 ## Step 1: The Types — Already Done For You
 

@@ -1,5 +1,7 @@
 # Project Structure and Visibility
 
+> The code for this is in `code/ex04_org`.
+
 Some terminology first — it's looser in most languages, but precise in Rust:
 
 * A **crate** is a Rust compilation unit: one library or one binary.
@@ -12,8 +14,8 @@ Some terminology first — it's looser in most languages, but precise in Rust:
   lockfile, one `cargo build` for everything.
 
 > The workshop's `code/` directory is itself a workspace — that's why
-> `cargo check -p ex03_errors` worked, and why four example crates share one
-> `target/` instead of quadrupling your disk. Every `exNN` crate is a member,
+> `cargo check -p ex03_errors` worked, and why the example crates share one
+> `target/` instead of each having its own. Every `exNN` crate is a member,
 > listed in the root `Cargo.toml`.
 
 > This is unlike C++, where `#include` is basically cut-and-paste and the C++20
@@ -22,8 +24,8 @@ Some terminology first — it's looser in most languages, but precise in Rust:
 
 ## Modules: Three Ways
 
-The code for this is in `code/ex04_org`. Rust gives you three ways to make a
-module — same visibility rules in all of them:
+Rust gives you three ways to make a module — same visibility rules in all of
+them:
 
 **1. Inline** — a namespace in the file:
 

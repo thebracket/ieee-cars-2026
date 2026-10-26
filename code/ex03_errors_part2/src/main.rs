@@ -1,4 +1,4 @@
-// Run with: cargo run --bin custom_error
+// Run with: cargo run -p ex03_errors_part2
 //
 // A "thiserror-style" error enum: the error type is just an enum, and a
 // derive macro writes the boilerplate (Display/Error impls) for us.

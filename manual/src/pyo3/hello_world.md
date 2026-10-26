@@ -1,7 +1,10 @@
 # Hello World, Called From Python
 
-Now the traditional part. Open `src/lib.rs` and add a second function — *inside*
-the `#[pymodule] mod ieee_cars_pyo3_demo { ... }` block:
+> The code for this is in `pyo3/ieee_cars_pyo3_demo/src/lib.rs`.
+
+Now the traditional part. Open `pyo3/ieee_cars_pyo3_demo/src/lib.rs` and add a
+second function — *inside* the
+`#[pymodule] mod ieee_cars_pyo3_demo { ... }` block:
 
 ```rust
     /// Say hello, from Rust.

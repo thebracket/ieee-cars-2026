@@ -1,5 +1,7 @@
 # Wrap Up: Custom Errors & Safe Math
 
+> The code for this is in `code/ex03_errors_part2`.
+
 ## Errors Are Enums, So Roll Your Own
 
 Since errors are just values, *your* error types are enums too — one variant per
@@ -21,10 +23,10 @@ enum ConfigError {
 }
 ```
 
-A runnable version is in `ex03_errors`:
+A runnable version is in `ex03_errors_part2`:
 
 ```bash
-cargo run --bin custom_error -p ex03_errors
+cargo run -p ex03_errors_part2
 ```
 
 > The project's `Cargo.toml` already lists `thiserror` — how dependencies get

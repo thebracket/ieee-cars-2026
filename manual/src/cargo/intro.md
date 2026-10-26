@@ -29,12 +29,14 @@ The commands you'll use constantly:
 
 ## Anatomy of a Project
 
+> The code for this is in `code/ex03_errors_part2`.
+
 Every project this morning has had the same shape — let's actually read one.
-From `ex03_errors`:
+From `ex03_errors_part2`:
 
 ```toml
 [package]
-name = "ex03_errors"
+name = "ex03_errors_part2"
 version = "0.1.0"
 edition = "2024"
 
@@ -46,12 +48,11 @@ thiserror = "2"
 * `edition` — Rust has yearly editions; `2024` is current. Editions opt the
   compiler into new language defaults *without* breaking old code — a crate
   from 2015 still compiles.
-* `[dependencies]` — that one line is all it took to give `ex03_errors` the
+* `[dependencies]` — that one line is all it took to give `ex03_errors_part2` the
   `thiserror` derive macro. Where it came from is the rest of this section.
 
-Also in the directory: `Cargo.lock` — the *exact* versions that were resolved,
-last build. For programs (as opposed to libraries), commit it: it's what makes
-"works on my machine" mean something.
+Also at the workspace root: `Cargo.lock` — the *exact* versions that were
+resolved, last build. For programs (as opposed to libraries), commit it: it's
+what makes "works on my machine" mean something.
 
-> The code for this section is in `code/ex04_org`. Next: how projects are
-> structured, and who's allowed to see what.
+Next: how projects are structured, and who's allowed to see what.

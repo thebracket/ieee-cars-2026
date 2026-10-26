@@ -1,6 +1,8 @@
 # Dependencies and the Supply Chain
 
-Back to that one line in `ex03_errors`:
+> The code for this is in `code/ex03_errors_part2`.
+
+Back to that one line in `ex03_errors_part2`:
 
 ```toml
 [dependencies]
@@ -68,5 +70,6 @@ For secure-systems work, the habits that matter:
 > async runtimes, serialization, HTTP — the big ones (`tokio`, `serde`) are
 > effectively community infrastructure, widely audited and quick to patch.
 
-And you're already practicing the workflow: `thiserror` went into `ex03_errors`
-with one `cargo add` and a version range you can now read fluently.
+And you're already practicing the workflow: `thiserror` went into
+`ex03_errors_part2` with one `cargo add` and a version range you can now read
+fluently.

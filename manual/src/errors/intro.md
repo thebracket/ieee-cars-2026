@@ -1,5 +1,7 @@
 # Safe Error Handling
 
+> The code for this is in `code/ex03_errors` and `code/ex03_errors_part2`.
+
 Two bug classes account for a *staggering* share of security advisories:
 
 1. **Null pointer dereference.** Tony Hoare called null his "billion-dollar mistake",
@@ -22,7 +24,5 @@ nag; production code ignores them anyway.
 Rust's answer to both bug classes is the **same feature**: a return type that
 carries either the value or the failure — and a compiler that refuses to let you
 touch the value without first proving you considered the failure.
-
-> The code for this is in `code/ex03_errors`.
 
 Let's meet the two types behind it.

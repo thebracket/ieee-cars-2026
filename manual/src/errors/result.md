@@ -1,5 +1,7 @@
 # Result: Errors You Can't Ignore
 
+> The code for this is in `code/ex03_errors`.
+
 `Result<T, E>` is Option's louder sibling: a call that can *fail* returns
 `Ok(value)` or `Err(error)` — never a half-written buffer and a global `errno`
 you forgot to check.
