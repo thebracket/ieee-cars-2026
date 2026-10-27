@@ -1,6 +1,7 @@
 # Summary
 
 - [Welcome](./welcome.md)
+- [Who Am I?](./whoami.md)
 - [Environment Check](./setup.md)
 
 ---
